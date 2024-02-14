@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Policy</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Policy Number</th>
+        <th>Status</th>
+        <th>Policy Holder</th>
+        <th>State</th>
+        <th>Coverages</th>
+        <th>Premium</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="policy : ${policy}">
+        <td th:text="${policy.policyNumber}"></td>
+        <td th:text="${policy.status}"></td>
+        <td th:text="${policy.policyHolder.name}"> </td>
+        <td th:text="${policy.policyHolder.state}">
+        </td>
+
+        <td>
+            <ul>
+                <li th:each="cover : ${coverage}" th:text="${cover.name}"></li>
+            </ul>
+        </td>
+
+        <td>
+                <div th:each="premium : ${premium}">
+                    <lebal th:if="${premium.policy.id eq policy.id}" th:text="${premium.amount}"></lebal>
+                </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
